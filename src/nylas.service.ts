@@ -16,7 +16,7 @@ import { INylasUser } from './interfaces/nylas-user.interface';
 import { IThreadParameters } from './interfaces/thread.interface';
 import * as crypto from 'crypto';
 import { EmptyQueryException } from './exceptions/empty-query.exception';
-import { DraftInput } from './interfaces/draft.interface';
+import { DraftFilter, DraftInput, DraftPagination } from './interfaces/draft.interface';
 import { Logger } from 'winston';
 import { IFileProperties } from './interfaces/file.interface';
 import { Label } from 'nylas/lib/models/folder';
@@ -484,6 +484,18 @@ export class NylasService implements INylasService {
         const connection = Connection.fromUser(user);
         return Nylas.with(connection.accessToken).drafts.find(id);
     }
+     /**
+     * Returns a list of Drafts
+     * @param user Nylas Account
+     * @param filter Draft filter parameters
+     * @param options Draft pagination options
+     * @returns Drafts
+     */
+      @CatchError('Draft')
+      async drafts(user: INylasUser, filter: DraftFilter, options?: DraftPagination): Promise<Draft[]> {
+          const connection = Connection.fromUser(user);
+          return Nylas.with(connection.accessToken).drafts.list({ ...filter, ...options });
+      }
 
     /**
      * Sends out an existing Draft
