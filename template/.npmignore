@@ -1,0 +1,5 @@
+documentation
+src
+.prettierrc
+package-lock.json
+tsconfig.json

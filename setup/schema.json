@@ -1,0 +1,44 @@
+{
+    "files": [
+        {
+            "from": "../package.json",
+            "to": "../package.json"
+        },
+        {
+            "from": "../src/index.ts",
+            "to": "../src/index.ts"
+        },
+        {
+            "from": "../src/constants.ts",
+            "to": "../src/constants.ts"
+        },
+        {
+            "from": "../src/template.module.ts",
+            "to": "../src/${name}.module.ts"
+        },
+        {
+            "from": "../src/template.providers.ts",
+            "to": "../src/${name}.providers.ts"
+        },
+        {
+            "from": "../src/template.service.ts",
+            "to": "../src/${name}.service.ts"
+        },
+        {
+            "from": "../src/interfaces/index.ts",
+            "to": "../src/interfaces/index.ts"
+        },
+        {
+            "from": "../src/interfaces/template-module-async-options.interface.ts",
+            "to": "../src/interfaces/${name}-module-async-options.interface.ts"
+        },
+        {
+            "from": "../src/interfaces/template-options-factory.interface.ts",
+            "to": "../src/interfaces/${name}-options-factory.interface.ts"
+        },
+        {
+            "from": "../src/interfaces/template-options.interface.ts",
+            "to": "../src/interfaces/${name}-options.interface.ts"
+        }
+    ]
+}
