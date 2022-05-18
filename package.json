@@ -1,7 +1,7 @@
 {
-    "name": "@chelsea-apps/template",
-    "version": "0.0.1",
-    "description": "Template for Chelsea Apps NestJS packages",
+    "name": "@chelsea-apps/nylas",
+    "version": "1.1.14",
+    "description": "Nylas for Chelsea Apps NestJS packages",
     "main": "dist/index",
     "types": "dist/index",
     "scripts": {
@@ -19,7 +19,8 @@
         "registry": "https://npm.pkg.github.com"
     },
     "dependencies": {
-        "@nestjsplus/dyn-schematics": "^1.0.12"
+        "@nestjsplus/dyn-schematics": "^1.0.12",
+        "nylas": "^6.1.0"
     },
     "devDependencies": {
         "@types/node": "^15.0.2",

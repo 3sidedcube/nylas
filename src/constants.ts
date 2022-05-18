@@ -1,0 +1,1 @@
+export const NYLAS_OPTIONS = 'NYLAS_OPTIONS';
