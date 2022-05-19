@@ -161,22 +161,10 @@ export class NylasService implements INylasService {
     async findThreadsByIDs(user: INylasUser, ids: string[], expanded?: boolean): Promise<Thread[]> {
         const connection = Connection.fromUser(user);
         if (ids.length > 0) {
-            try {
-                const threads = await Nylas.with(connection.accessToken).threads.list({
-                    in: ids,
-                    view: expanded ? 'expanded' : undefined,
-                });
-                console.log(threads);
-                return threads;
-            } catch (err) {
-                console.log('Threads Error:', err);
-            }
-            // const threads = await Promise.all(
-            //     ids.map(async (id) => {
-            //         return Nylas.with(connection.accessToken).threads.find(id, expanded ? { view: 'expanded' } : {});
-            //     }),
-            // );
-            // return threads;
+            return Nylas.with(connection.accessToken).threads.list({
+                in: ids,
+                view: expanded ? 'expanded' : undefined,
+            });
         }
         return Nylas.with(connection.accessToken).threads.list();
     }
