@@ -161,12 +161,10 @@ export class NylasService implements INylasService {
     async findThreadsByIDs(user: INylasUser, ids: string[], expanded?: boolean): Promise<Thread[]> {
         const connection = Connection.fromUser(user);
         if (ids.length > 0) {
-            const threads = await Promise.all(
-                ids.map(async (id) => {
-                    return Nylas.with(connection.accessToken).threads.find(id, expanded ? { view: 'expanded' } : {});
-                }),
-            );
-            return threads;
+            return Nylas.with(connection.accessToken).threads.list({
+                in: ids,
+                view: expanded ? 'expanded' : undefined,
+            });
         }
         return Nylas.with(connection.accessToken).threads.list();
     }
@@ -484,18 +482,18 @@ export class NylasService implements INylasService {
         const connection = Connection.fromUser(user);
         return Nylas.with(connection.accessToken).drafts.find(id);
     }
-     /**
+    /**
      * Returns a list of Drafts
      * @param user Nylas Account
      * @param filter Draft filter parameters
      * @param options Draft pagination options
      * @returns Drafts
      */
-      @CatchError('Draft')
-      async drafts(user: INylasUser, filter: DraftFilter, options?: DraftPagination): Promise<Draft[]> {
-          const connection = Connection.fromUser(user);
-          return Nylas.with(connection.accessToken).drafts.list({ ...filter, ...options });
-      }
+    @CatchError('Draft')
+    async drafts(user: INylasUser, filter: DraftFilter, options?: DraftPagination): Promise<Draft[]> {
+        const connection = Connection.fromUser(user);
+        return Nylas.with(connection.accessToken).drafts.list({ ...filter, ...options });
+    }
 
     /**
      * Sends out an existing Draft
