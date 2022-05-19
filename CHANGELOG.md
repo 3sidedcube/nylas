@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1-0](https://github.com/chelsea-apps/nylas/compare/v1.2.0...v1.2.1-0) (2022-05-19)
+
+
+### Bug Fixes
+
+* **threads:** Query threads in bulk ([280a81c](https://github.com/chelsea-apps/nylas/commit/280a81cbb113f0d129fa339d088f3e874e2ae4f0))
+
 ## [1.2.0](https://github.com/chelsea-apps/nylas/compare/v1.1.14...v1.2.0) (2022-05-19)
 
 
