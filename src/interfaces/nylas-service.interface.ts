@@ -2,7 +2,7 @@ import Draft from 'nylas/lib/models/draft';
 import File from 'nylas/lib/models/file';
 import Message from 'nylas/lib/models/message';
 import Thread from 'nylas/lib/models/thread';
-import { DraftInput } from './draft.interface';
+import { DraftFilter, DraftInput, DraftPagination } from './draft.interface';
 import { IFileProperties } from './file.interface';
 import { SendMessageInput } from './message.interface';
 import { INylasUser } from './nylas-user.interface';
@@ -26,6 +26,7 @@ export interface INylasService {
     createDraft(user: INylasUser, input: DraftInput): Promise<Draft>;
     updateDraft(user: INylasUser, id: string, input: DraftInput): Promise<Draft>;
     deleteDraft(user: INylasUser, id: string, version: number): Promise<Draft>;
+    drafts(user: INylasUser, filter: DraftFilter, options: DraftPagination): Promise<Draft[]>;
     sendDraft(user: INylasUser, id: string): Promise<Draft>;
     send(user: INylasUser, input: SendMessageInput): Promise<Message>;
     fileUpload(user: INylasUser, file: IFileProperties): Promise<File>;
