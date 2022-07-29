@@ -21,6 +21,7 @@ export interface SendMessageInput {
     to: User[];
     from?: User[];
     replyTo?: User[];
+    replyToMessageId?: string;
     cc?: User[];
     bcc?: User[];
     fileIds?: string[];

@@ -225,6 +225,7 @@ export class NylasService implements INylasService {
             bcc,
             cc,
             files,
+            replyToMessageId: input.replyToMessageId,
             date: new Date(),
         });
 
