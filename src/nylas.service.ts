@@ -19,7 +19,7 @@ import { EmptyQueryException } from './exceptions/empty-query.exception';
 import { DraftFilter, DraftInput, DraftPagination } from './interfaces/draft.interface';
 import { Logger } from 'winston';
 import { IFileProperties } from './interfaces/file.interface';
-import { Label } from 'nylas/lib/models/folder';
+import Folder, { Label } from 'nylas/lib/models/folder';
 import { CatchError } from './catch-errors';
 import { NotFoundException } from './exceptions/not-found.exception';
 
@@ -179,6 +179,10 @@ export class NylasService implements INylasService {
     @CatchError('Threads')
     async searchThreads(user: INylasUser, query: string, options?: IThreadParameters): Promise<Thread[]> {
         const connection = Connection.fromUser(user);
+
+        const labels: Label[] = await Nylas.with(connection.accessToken).labels.list();
+        const trashLabel = labels.find((label) => label.name === 'trash');
+
         return Nylas.with(connection.accessToken).threads.search(query, { ...options });
     }
 
@@ -314,14 +318,36 @@ export class NylasService implements INylasService {
         const connection = Connection.fromUser(user);
         const message = await Nylas.with(connection.accessToken).messages.find(id);
 
-        // Each account has 8 default labels such as "inbox", "all", "trash", "archive", "drafts","sent","spam","important"
-        const labels: Label[] = await Nylas.with(connection.accessToken).labels.list();
-        const trashLabel = labels.find((label) => label.name === 'trash');
-        if (!trashLabel) throw new NotFoundException('Label');
+        const unit = await this.getOrganisationalUnit(user);
+        if (unit === 'label') {
+            // Each account has 8 default labels such as "inbox", "all", "trash", "archive", "drafts","sent","spam","important"
+            const trashLabel: Label = await Nylas.with(connection.accessToken).labels.find('trash');
+            if (!trashLabel) throw new NotFoundException('Label');
 
-        message.labels.push(trashLabel);
+            message.labels.push(trashLabel);
+        } else {
+            const trashFolder: Folder = await Nylas.with(connection.accessToken).folders.find('trash');
+            if (!trashFolder) throw new NotFoundException('Folder');
+
+            message.folder = trashFolder;
+        }
 
         return message.save();
+    }
+
+    /**
+     * Get the organisational unit (label or folder) for an account
+     * @description Gmail uses labels, most other providers use folders
+     * @param user Nylas User
+     * @returns Folder or Label
+     */
+    @CatchError('Account')
+    async getOrganisationalUnit(user: INylasUser) {
+        const connection = Connection.fromUser(user);
+
+        const account = await Nylas.with(connection.accessToken).account.get();
+
+        return account.organizationUnit as 'label' | 'folder';
     }
 
     /**

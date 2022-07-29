@@ -13,4 +13,10 @@ export interface IThreadParameters {
      * Thread View [Allowed: "ids" ┃ "count" ┃ "expanded"].
      */
     view?: string;
+
+    /**
+     * Show deleted threads/messages in response
+     * @default false
+     */
+    showDeleted?: boolean;
 }
