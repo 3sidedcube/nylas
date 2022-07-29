@@ -217,6 +217,12 @@ export class NylasService implements INylasService {
             );
         }
 
+        let replyToMessageId = {};
+        if (input.replyToMessageId)
+            replyToMessageId = {
+                replyToMessageId: input.replyToMessageId,
+            };
+
         const draft = new Draft(Nylas.with(connection.accessToken), {
             subject: input.subject,
             body: input.body,
@@ -225,8 +231,8 @@ export class NylasService implements INylasService {
             bcc,
             cc,
             files,
-            replyToMessageId: input.replyToMessageId,
             date: new Date(),
+            ...replyToMessageId,
         });
 
         return await draft.send();
