@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/chelsea-apps/nylas/compare/v1.2.2...v1.2.3) (2022-07-29)
+
+
+### Bug Fixes
+
+* **send:** Fix error when sending without a reply ([1209816](https://github.com/chelsea-apps/nylas/commit/12098162f76cd63b9347d0db5b342a76f39aec84))
+
 ### [1.2.2](https://github.com/chelsea-apps/nylas/compare/v1.2.1...v1.2.2) (2022-07-29)
 
 
