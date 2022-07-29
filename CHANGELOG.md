@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/chelsea-apps/nylas/compare/v1.2.3...v1.2.4) (2022-07-29)
+
+
+### Bug Fixes
+
+* **delete:** Fix delete logic to handle folder-based email providers ([a22d84a](https://github.com/chelsea-apps/nylas/commit/a22d84ad2c596aa452bf2f1970f66453f6d6e9fb))
+
 ### [1.2.3](https://github.com/chelsea-apps/nylas/compare/v1.2.2...v1.2.3) (2022-07-29)
 
 
