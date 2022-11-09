@@ -1,6 +1,6 @@
 {
     "name": "@chelsea-apps/nylas",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "description": "Nylas for Chelsea Apps NestJS packages",
     "main": "dist/index",
     "types": "dist/index",

@@ -317,11 +317,11 @@ export class NylasService implements INylasService {
     async deleteMessage(user: INylasUser, id: string): Promise<Message> {
         const connection = Connection.fromUser(user);
         const message = await Nylas.with(connection.accessToken).messages.find(id);
-
         const unit = await this.getOrganisationalUnit(user);
         if (unit === 'label') {
             // Each account has 8 default labels such as "inbox", "all", "trash", "archive", "drafts","sent","spam","important"
-            const trashLabel: Label = await Nylas.with(connection.accessToken).labels.find('trash');
+            const labels = await Nylas.with(connection.accessToken).labels.list();
+            const trashLabel: Label = labels.find((label) => label.name === 'trash');
             if (!trashLabel) throw new NotFoundException('Label');
 
             message.labels.push(trashLabel);
