@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.5](https://github.com/chelsea-apps/nylas/compare/v1.2.4...v1.2.5) (2022-11-09)
+
+
+### Bug Fixes
+
+* Delete message logic ([940b2c2](https://github.com/chelsea-apps/nylas/commit/940b2c2f61f5d446b8598300fdf1edcf02c958c0))
+
 ### [1.2.4](https://github.com/chelsea-apps/nylas/compare/v1.2.3...v1.2.4) (2022-07-29)
 
 
